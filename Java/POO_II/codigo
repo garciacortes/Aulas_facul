@@ -1,0 +1,34 @@
+package t;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class verifica {
+	
+	private static void verificar(ArrayList<Integer> lista, ArrayList<Integer> list_temp) {
+		if(lista.size() > 0) {
+			if(list_temp.size() == 0) {
+				list_temp.add(lista.get(0));
+				lista.remove(0);
+				verificar(lista, list_temp);
+			} else if(list_temp.get(list_temp.size() - 1) < lista.get(0)) {
+				list_temp.add(lista.get(0));
+				lista.remove(0);
+				verificar(lista, list_temp);
+			} else if(lista.size() > list_temp.size()) {
+				lista.forEach(System.out::println);
+			} else if(list_temp.size() > lista.size()) {
+				list_temp.forEach(System.out::println);
+			}
+		}
+	}
+	
+
+	public static void main(String[] args) {
+		
+		Integer[] dados = {10, 20, 40, 60, 2, 4, 6};
+		ArrayList<Integer> listaDados = new ArrayList<Integer>(Arrays.asList(dados));
+		ArrayList<Integer> list_temp = new ArrayList<Integer>();
+		verificar(listaDados, list_temp);
+	}
+}

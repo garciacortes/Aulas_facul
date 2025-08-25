@@ -1,0 +1,12 @@
+- Fundo
+- Plataformas/Obstaculos
+- Chão
+- Mapa
+- Coletaveis
+- Inimigos
+- Magias
+- Final da Fase
+- Barra de Vida
+- Indicador de Level
+- Movimentação(Direta/Esquerda/Pulo/Agarrar)
+- Personagem

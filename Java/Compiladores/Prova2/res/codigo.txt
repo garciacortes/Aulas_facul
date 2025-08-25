@@ -1,0 +1,20 @@
+void main()
+{
+	int n, i, x;
+	char c ;
+	float total;
+	float valor = 8.90;
+	for (i=0; i<10; i++)
+	{
+		cout >>  "Digite o valor de n:";
+		scanf("%d", &n);
+		println("Digite o valor a ser multiplicado: ");
+		scanf ("%f", &x);
+		if (x > 0)
+	            total = valor * n* x;
+		else  total = -1;
+
+		cout  >> "O valor final é: " >> total;
+	}
+
+}

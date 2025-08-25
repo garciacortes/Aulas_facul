@@ -1,0 +1,10 @@
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\bin\Debug\Aula2.exe.config
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\bin\Debug\Aula2.exe
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\bin\Debug\Aula2.pdb
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.csproj.AssemblyReference.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.Properties.Resources.resources
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.csproj.GenerateResource.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.exe
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.pdb
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Aula2\Aula2\obj\Debug\Aula2.Form1.resources

@@ -1,0 +1,10 @@
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\bin\Debug\Prova2.exe.config
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\bin\Debug\Prova2.exe
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\bin\Debug\Prova2.pdb
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.csproj.AssemblyReference.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Aula2.Form1.resources
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.Properties.Resources.resources
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.csproj.GenerateResource.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.exe
+C:\Users\Lucas\Documents\Programação\Facul\LingFormais\Prova2\Prova2\obj\Debug\Prova2.pdb

@@ -1,0 +1,13 @@
+soma
+ntota1
+234teste
+12.5
+/* comentaro varias linhas
+
+final do comentario*/
+//comentario de uma linha
+if
+class
+int while do
+preco_de_venda
+preco.maximo

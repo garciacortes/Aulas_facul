@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="ERROR_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%red(%msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender para mensagens de aviso (amarelo) -->
+    <appender name="WARN_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuração do logger raiz -->
+    <logger name="error" level="error">
+        <appender-ref ref="ERROR_APPENDER" />
+    </logger>
+
+    <!-- Configuração do logger para mensagens de aviso -->
+    <logger name="warn" level="warn">
+        <appender-ref ref="WARN_APPENDER" />
+    </logger> 
+</configuration>
