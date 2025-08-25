@@ -6,3 +6,4 @@ if __name__ == "__main__":
     janela = Interface()
     janela.show()
     app.exec()
+    print("teste")
