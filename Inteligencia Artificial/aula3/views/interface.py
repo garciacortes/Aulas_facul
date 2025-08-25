@@ -11,11 +11,14 @@ class Interface(QMainWindow):
     def __init__(self,):
         super().__init__()
         
-        self.arvore = ArvoreGenetica()
-        
         self.setWindowTitle("Arvore Genetica")
         self.resize(600, 600)
         
+        self.arvore = ArvoreGenetica()
+        self.setup_ui()
+        self.setup_connections()
+
+    def setup_ui(self):
         center_widget = QWidget()
         self.setCentralWidget(center_widget)
         layout  = QGridLayout()
@@ -38,7 +41,6 @@ class Interface(QMainWindow):
             border-radius: 10px;
             font-size: 13px;
         """)
-        self.btn_Iniciar.clicked.connect(self.arvore.iniciar)
         
         self.pop_initial_model = PopulacaoModel()
         self.pop_initial_view = QListView()
@@ -50,13 +52,6 @@ class Interface(QMainWindow):
         self.pop_evolution_view.setModel(self.pop_evolution_model)
         self.pop_evolution_view.setFont(QFont("arial", 12))
         
-        self.arvore.pop_initial_atualizar.connect(self.pop_initial_model.atualizar)
-        self.arvore.pop_evolution_atualizar.connect(self.pop_evolution_model.atualizar)
-        self.arvore.pop_initial_clear.connect(self.pop_initial_model.clear)
-        self.arvore.pop_evolution_clear.connect(self.pop_evolution_model.clear)
-        self.arvore.geracoes_atualizar.connect(
-                lambda val: self.qtd_Geracoes_Label.setText(f"Quantidade Gerações: {val}")
-        )
         
         layout.addWidget(self.pop_initial_title, 0, 0)
         layout.addWidget(self.pop_evolution_title, 0, 1)
@@ -64,5 +59,13 @@ class Interface(QMainWindow):
         layout.addWidget(self.pop_evolution_view, 1, 1)
         layout.addWidget(self.btn_Iniciar, 2, 0, alignment=Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.qtd_Geracoes_Label, 2, 1, alignment=Qt.AlignmentFlag.AlignRight)
-
-        self.setLayout(layout)
+        
+    def setup_connections(self):
+        self.btn_Iniciar.clicked.connect(self.arvore.iniciar)
+        self.arvore.pop_initial_atualizar.connect(self.pop_initial_model.atualizar)
+        self.arvore.pop_evolution_atualizar.connect(self.pop_evolution_model.atualizar)
+        self.arvore.pop_initial_clear.connect(self.pop_initial_model.clear)
+        self.arvore.pop_evolution_clear.connect(self.pop_evolution_model.clear)
+        self.arvore.geracoes_atualizar.connect(
+                lambda val: self.qtd_Geracoes_Label.setText(f"Quantidade Gerações: {val}")
+        )

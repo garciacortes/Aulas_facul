@@ -20,8 +20,6 @@ class ArvoreGenetica(QObject):
         self.filhos = []
         self.roleta = []
         self.quantidadeGeracoes = 0
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.process_geracao)
     
     def PopulacaoConvergiu(self):
         return all(x == 1023 for x in self.populacao)
@@ -62,17 +60,13 @@ class ArvoreGenetica(QObject):
         
         self.populacao = [random.randrange(0, 1023) for _ in range(self.TamanhoPopulacao)]
         self.pop_initial_atualizar.emit(self.populacao)
-        self.timer.start(300)
         
-    def process_geracao(self):
-        if self.quantidadeGeracoes < self.MAXIMO_GERACOES and not self.PopulacaoConvergiu():
+        while self.quantidadeGeracoes < self.MAXIMO_GERACOES and not self.PopulacaoConvergiu():
             self.pop_evolution_clear.emit()
             self.cruzamento()
             self.mutacao()
             self.populacao[:]= sorted(self.filhos + self.populacao, reverse=True)[:50]
-            self.pop_evolution_atualizar.emit(self.populacao)
             self.quantidadeGeracoes += 1
-            self.geracoes_atualizar.emit(self.quantidadeGeracoes)
-        else:
-            self.timer.stop()
+        self.geracoes_atualizar.emit(self.quantidadeGeracoes)
+        self.pop_evolution_atualizar.emit(self.populacao)
         
