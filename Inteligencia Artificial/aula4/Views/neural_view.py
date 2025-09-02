@@ -3,7 +3,7 @@ from vispy.scene import visuals
 
 class NeuralNetworkCanvas(scene.SceneCanvas):
     def __init__(self, model, controller, neuron_size=20):
-        super().__init__(keys='interactive', bgcolor='white', show=False)
+        super().__init__(keys='interactive', bgcolor='white', show=False, size=(250, 250))
         self.unfreeze()
         self.model = model
         self.controller = controller

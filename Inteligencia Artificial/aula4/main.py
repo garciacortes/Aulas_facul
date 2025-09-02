@@ -9,14 +9,19 @@ from Views.interface import Interface
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    layers = [4,3,2]
+    layers = [5, 1]
     positions, lines, layer_indices = neural_calculate(layers)
 
     model = NeuralNetworkModel(positions, lines, layer_indices)
     controller = NeuralNetworkController(model)
     view = Interface(model, controller)
-    view.resize(400, 300)
+    
+    #view.resize(400, 300)
     controller.canvas = view.canvas
 
     view.show()
+    qr = view.frameGeometry()
+    cp = QApplication.primaryScreen().availableGeometry().center()
+    qr.moveCenter(cp)
+    view.move(qr.topLeft())
     sys.exit(app.exec())
