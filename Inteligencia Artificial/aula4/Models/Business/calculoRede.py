@@ -6,7 +6,7 @@ class CalculoRede():
         self.model_RedeCalculo = model_RedeCalculo
         self.controller_RedeColor = controller_RedeColor
         self.X_VetoresTreinamento = [ 
-            [ 1, 1, 1, 1, 1],
+            [ 1, 1, 1, 1, 1], #febre, enjoo, manchas, dores, 1 = doente | -1 = saudavel
             [-1, -1, -1, -1, 1],
             [1, 1, 1, -1, 1],
             [1, -1, -1, 1, 1],
@@ -17,10 +17,10 @@ class CalculoRede():
         self.TaxaAprendizagem = 0.02
         self.W_Pesos = self.model_RedeCalculo.W_Pesos
         self.sleep = 70
+        self.doenças = {}
+        self.manchas = {}
         
     def treinar(self):
-        Ciclos = self.model_RedeCalculo.ciclos
-        
         temErro = True
         
         while (temErro == True):
@@ -48,8 +48,21 @@ class CalculoRede():
                     DeltaW = self.X_VetoresTreinamento[i][j] * Erro * self.TaxaAprendizagem
                     self.W_Pesos[j] = self.W_Pesos[j] + DeltaW
             self.model_RedeCalculo.ciclos += 1
-        
-        #self.model_RedeCalculo.ciclos = Ciclos
+
+        self.model_RedeCalculo.btn_testar = True
         self.model_RedeCalculo.W_Pesos = self.W_Pesos
     
     def testar(self):
+        self.doenças = self.model_RedeCalculo.doenças
+        self.manchas = self.model_RedeCalculo.manchas
+        
+        febre = 1 if self.doenças.get("Febre") else -1
+        enjoo = 1 if self.doenças.get("Enjoo") else -1
+        dores = 1 if self.doenças.get("Dores") else -1
+        manchas = 1 if self.manchas.get("Pequena") or self.manchas.get("Grande") else -1
+        
+        #print(f"({self.W_Pesos[0]} * {febre}) + ({self.W_Pesos[1]} * {enjoo}) + ({self.W_Pesos[2]} * {manchas}) + ({self.W_Pesos[3]} * {dores}) + ({self.W_Pesos[4]} * {1})")
+        
+        somatorio = (self.W_Pesos[0] * febre) + (self.W_Pesos[1] * enjoo) + (self.W_Pesos[2] * manchas) + (self.W_Pesos[3] * dores) + (self.W_Pesos[4] * 1)
+        
+        self.model_RedeCalculo.diagnostico = "Doente" if somatorio >= 0 else "Saudavel"

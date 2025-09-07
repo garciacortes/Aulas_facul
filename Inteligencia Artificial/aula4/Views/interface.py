@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QLabel, QGridLayout, QHBoxLayout,
-    QGroupBox, QPushButton, QComboBox, QRadioButton, QLayout
+    QGroupBox, QPushButton, QCheckBox, QRadioButton
 )
 from PyQt6.QtCore import Qt
 
@@ -25,6 +25,7 @@ class Interface(QMainWindow):
         layout_Treino =  QGridLayout()
         layout_teste_rede =  QGridLayout()
         layout_pesos = QVBoxLayout()
+        layout_doenças = QVBoxLayout()
         layout_manchas = QHBoxLayout()
         
         GroupBox_treino = QGroupBox("Treinamento")
@@ -51,16 +52,47 @@ class Interface(QMainWindow):
         layout_pesos.addWidget(self.lbl_peso4)
         layout_pesos.addWidget(self.lbl_peso5)
         
-        self.comboBox_doencas = QComboBox()
+        self.checkBox_febre = QCheckBox("Febre")
+        self.checkBox_enjoo = QCheckBox("Enjôo")
+        self.checkBox_dores = QCheckBox("Dores")
         self.radioBtn_manchasP = QRadioButton("Pequenas")
         self.radioBtn_manchasG = QRadioButton("Grandes")
         self.lbl_diagnostico = QLabel("Diagnóstico:     --")
         self.btn_testar = QPushButton("Testar")
         
-        self.comboBox_doencas.addItems(["Escolha a Doença ", "Febre", "Enjôo", "Dores"])
+        self.btn_testar.setEnabled(False)
+        self.checkBox_febre.setStyleSheet("""
+                QCheckBox {
+                    font-size: 14px;
+                }
+                QCheckBox::indicator {
+                    width: 23px;
+                    height: 23px;
+                }
+        """)
+        self.checkBox_enjoo.setStyleSheet("""
+                QCheckBox {
+                    font-size: 14px;
+                }
+                QCheckBox::indicator {
+                    width: 23px;
+                    height: 23px;
+                }
+        """)
+        self.checkBox_dores.setStyleSheet("""
+                QCheckBox {
+                    font-size: 14px;
+                }
+                QCheckBox::indicator {
+                    width: 23px;
+                    height: 23px;
+                }
+        """)
         
         layout_teste_rede.setHorizontalSpacing(50)
-        layout_teste_rede.addWidget(self.comboBox_doencas, 0, 0)
+        layout_doenças.addWidget(self.checkBox_febre)
+        layout_doenças.addWidget(self.checkBox_enjoo)
+        layout_doenças.addWidget(self.checkBox_dores)
         layout_teste_rede.addWidget(self.btn_testar, 1, 0)
         layout_teste_rede.addWidget(GroupBox_manchas, 0, 1)
         layout_teste_rede.addWidget(self.lbl_diagnostico, 1, 1, alignment=Qt.AlignmentFlag.AlignCenter)
@@ -75,6 +107,8 @@ class Interface(QMainWindow):
         GroupBox_treino.setLayout(layout_Treino)
         GroupBox_teste_rede.setLayout(layout_teste_rede)
         GroupBox_manchas.setLayout(layout_manchas)
+        
+        layout_teste_rede.addLayout(layout_doenças, 0, 0)
         
         layout_Geral.addLayout(layout_Widget)
         layout_Geral.addLayout(layout_Rede)
