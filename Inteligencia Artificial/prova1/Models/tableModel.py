@@ -1,9 +1,11 @@
 from PyQt6.QtCore import QAbstractTableModel, Qt, QModelIndex
+from PyQt6.QtGui import QColor
 
 class TableModel(QAbstractTableModel):
   def __init__(self):
     super().__init__()
     self._dados = [["" for _ in range(7)] for _ in range(9)]
+    self._cores = [[QColor("white") for _ in range(7)] for _ in range(9)]
     
   def rowCount(self, parent=QModelIndex()):
     return len(self._dados)
@@ -14,18 +16,18 @@ class TableModel(QAbstractTableModel):
   def data(self, index, role=Qt.ItemDataRole.DisplayRole):
     if role == Qt.ItemDataRole.DisplayRole or role == Qt.ItemDataRole.EditRole:
       return self._dados[index.row()][index.column()]
+    elif role == Qt.ItemDataRole.BackgroundRole:
+      return self._cores[index.row()][index.column()]
   
-  def setData(self, index, value, role=Qt.ItemDataRole):
+  def setData(self, index, value, role=Qt.ItemDataRole.EditRole):
+        if not index.isValid():
+            return False
         if role == Qt.ItemDataRole.EditRole:
             self._dados[index.row()][index.column()] = value
-            self.dataChanged.emit(index, index, [Qt.ItemDataRole.DisplayRole, Qt.ItemDataRole.EditRole])
-            return True
-        return False
-  
-  def add_row(self, row_data):
-    self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-    self._dados.append(row_data)
-    self.endInsertRows()
+        elif role == Qt.ItemDataRole.BackgroundRole:
+            self._cores[index.row()][index.column()] = value
+        self.dataChanged.emit(index, index, [Qt.ItemDataRole.DisplayRole, Qt.ItemDataRole.BackgroundRole])
+        return True
   
   def flags(self, index):
     return Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsEditable
