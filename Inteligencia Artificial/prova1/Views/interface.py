@@ -21,9 +21,10 @@ class Interface(QMainWindow):
         layout_training_input = QVBoxLayout()
         layout_training_view = QVBoxLayout()
         layout_training_view2 = QVBoxLayout()
+        layout_training_view3 = QHBoxLayout()
         layout_answer = QVBoxLayout()
         left, top, right, bottom = layout_training_view.getContentsMargins()
-        layout_training_view.setContentsMargins(60, top, right, bottom)
+        layout_training_view.setContentsMargins(40, top, right, bottom)
                 
         group_layout_testing = QVBoxLayout()
 
@@ -53,7 +54,7 @@ class Interface(QMainWindow):
         self.lbl_answer = QLabel("---")
         self.lbl_ciclos = QLabel("Ciclos: --")
         
-        self.lbl_ciclos.setStyleSheet("font-size: 16px;")
+        self.lbl_ciclos.setStyleSheet("font-size: 16px; margin-top: 6px; padding-right: 6px; padding-left: 6px;")
         self.lbl_answer.setStyleSheet("font-size: 16px; font-weight: bold")
         self.lbl_answer_title.setStyleSheet("font-size: 16px;")
         
@@ -88,12 +89,13 @@ class Interface(QMainWindow):
         self.btn_treinar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_treinar.setStyleSheet("""
             QPushButton {
+                margin-top: 8px;
                 background-color: lightgray;
                 border: 1px solid black;
                 border-radius: 10px;
                 font-size: 16px;
-                padding-right: 8px;
-                padding-left: 8px;
+                padding-right: 6px;
+                padding-left: 6px;
             }
         """)
         
@@ -103,6 +105,7 @@ class Interface(QMainWindow):
         self.btn_testar.setStyleSheet("""
             QPushButton {
                 margin-top: 8px;
+                margin-bottom: 7px;
                 background-color: lightgray;
                 border: 1px solid black;
                 border-radius: 10px;
@@ -120,10 +123,10 @@ class Interface(QMainWindow):
         group_layout_training.addLayout(layout_training_view)
         layout_training_view.addWidget(self.table_training, alignment=Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignCenter)
         layout_training_view.addWidget(container_view, alignment=Qt.AlignmentFlag.AlignBottom)
-        #layout_training_view.addSpacing(60)
         layout_training_view2.addWidget(self.plot_graph)
-        layout_training_view2.addWidget(self.lbl_ciclos, alignment=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
-        layout_training_view2.addWidget(self.btn_treinar, alignment=Qt.AlignmentFlag.AlignRight)
+        layout_training_view2.addLayout(layout_training_view3)
+        layout_training_view3.addWidget(self.lbl_ciclos, alignment=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignCenter)
+        layout_training_view3.addWidget(self.btn_treinar, alignment=Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignCenter)
         
         layout_training_input.addWidget(self.lbl_fonte)
         layout_training_input.addWidget(self.combo_fonte)
