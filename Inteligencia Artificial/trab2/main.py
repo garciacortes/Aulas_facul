@@ -11,12 +11,10 @@ from Views.interface import Interface
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    model_Table_training = TableModel()
-    model_Table_testing = TableModel()
     interface_Model = InterfaceModel()
-    network_Operation = Network_Operation(model_Table_training, model_Table_testing, interface_Model)
+    network_Operation = Network_Operation(interface_Model)
     view = Interface()
-    interface_controller = interfaceController(model_Table_training, model_Table_testing, network_Operation, interface_Model, view);
+    interface_controller = interfaceController(network_Operation, interface_Model, view);
     
     view.resize(500, 600)
     view.show()

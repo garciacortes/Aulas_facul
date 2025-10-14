@@ -27,8 +27,6 @@ class Network_Operation(QObject):
     self.z_in = np.zeros(self.quantidadeNeuroniosEscondidos)
     self.z = np.zeros(self.quantidadeNeuroniosEscondidos)
     
-    self.taxaAprendizagem = 0.001
-    
   
   def PreencherGrid(self):
     
@@ -69,10 +67,12 @@ class Network_Operation(QObject):
     
   def btn_treinar(self):
     ciclos = 0
-    numeroDeCiclosDesejados = 10
-    momento = 0.005
+    numeroDeCiclosDesejados = self.interface_Model.ciclos
+    momento = self.interface_Model.momento
+    taxaAprendizagem = self.interface_Model.taxaAprendizagem
     
     self.interface_Model.dataErro(np.array([]))
+    self.interface_Model.dataFunc(np.array([]))
     
     self.initPeso(self.quantidadeNeuroniosEscondidos)
     
@@ -102,16 +102,16 @@ class Network_Operation(QObject):
         
         erroParcial += 0.5 * ((t - y) ** 2)
         
-        self.deltaPesoW = (self.taxaAprendizagem * deltinha * self.z) * momento
+        self.deltaPesoW = (taxaAprendizagem * deltinha * self.z) * momento
           
-        self.deltaPesoW_bias = (self.taxaAprendizagem * deltinha) * momento
+        self.deltaPesoW_bias = (taxaAprendizagem * deltinha) * momento
         
         for i in range(self.quantidadeNeuroniosEscondidos):
           deltinha_in = deltinha * self.pesosW[i]
           deltinha = deltinha_in * self.derivadaDaFuncaoDeAtivacao(self.z_in[i])
           
-          self.deltaPesoV[i] = self.taxaAprendizagem * deltinha * self.vetorEntradas_X[vetorAtual] * momento
-          self.deltaPesoV_bias[i] = (self.taxaAprendizagem * deltinha) * momento
+          self.deltaPesoV[i] = taxaAprendizagem * deltinha * self.vetorEntradas_X[vetorAtual] * momento
+          self.deltaPesoV_bias[i] = (taxaAprendizagem * deltinha) * momento
           
           self.pesosV[i] += self.deltaPesoV[i]
           self.pesosV_bias[i] += self.deltaPesoV_bias[i]
@@ -119,6 +119,11 @@ class Network_Operation(QObject):
         self.pesosW += self.deltaPesoW
         self.pesosW_bias += self.deltaPesoW_bias
         
-        self.interface_Model.dataErro(np.array([ciclos, erroParcial]))
+      self.interface_Model.dataErro(np.array([ciclos, erroParcial]))
+
+    self.btn_testar()
+    
+  def btn_testar(self):
   
-  # def btn_testar(self):
+    self.interface_Model.dataFunc(np.array([]))
+    
