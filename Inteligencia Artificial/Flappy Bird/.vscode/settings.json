@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.dsc": "denizenscript",
+    "flappy.c": "cpp",
+    "enfeite.c": "cpp"
+  }
+}
