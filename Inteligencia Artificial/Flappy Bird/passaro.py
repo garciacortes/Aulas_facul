@@ -26,6 +26,9 @@ class Passaro(pygame.sprite.Sprite):
     
     self.rect = self.sprite[self.indiceAnimacao].get_rect(bottomleft=(self.posicaoX, self.posicaoY))
     self._aceleracaoGravidade = 0.1
+    self._cerebro = None
+    self._fitness = 0
+    self._canosConcluidos = 0
     
   def get_rect(self):
     return self.rect
@@ -83,11 +86,35 @@ class Passaro(pygame.sprite.Sprite):
   @velocidadeY.setter
   def velocidadeY(self, value):
     self._velocidadeY = value
+    
   @property
-  
   def aceleracaoGravidade(self):
     return self._aceleracaoGravidade
   
   @aceleracaoGravidade.setter
   def aceleracaoGravidade(self, value):
     self._aceleracaoGravidade = value
+    
+  @property
+  def cerebro(self):
+    return self._cerebro
+  
+  @cerebro.setter
+  def cerebro(self, value):
+    self._cerebro = value
+    
+  @property
+  def fitness(self):
+    return self._fitness
+  
+  @fitness.setter
+  def fitness(self, value):
+    self._fitness += value
+    
+  @property
+  def canosConcluidos(self):
+    return self._canosConcluidos
+  
+  @fitness.setter
+  def canosConcluidos(self, value):
+    self._canosConcluidos += value

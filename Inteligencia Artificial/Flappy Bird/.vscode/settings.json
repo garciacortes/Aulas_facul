@@ -3,5 +3,8 @@
     "*.dsc": "denizenscript",
     "flappy.c": "cpp",
     "enfeite.c": "cpp"
-  }
+  },
+  "cSpell.words": [
+    "mutacao"
+  ]
 }
